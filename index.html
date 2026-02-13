@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Sumayah & Trifani 💜</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    font-family:'Segoe UI',sans-serif;
+    background: linear-gradient(to top,#f3e5f5,#e1bee7);
+    color:#6a1b9a;
+    text-align:center;
+}
+
+/* Judul */
+h1{
+    margin-top:40px;
+    font-size:2.5em;
+    animation: fadeIn 3s ease-in-out;
+}
+
+/* Pesan */
+#message{
+    width:80%;
+    margin:20px auto;
+    font-size:1.2em;
+    line-height:1.8em;
+    min-height:120px;
+    transition:opacity 1s;
+}
+
+/* Taman bunga */
+.garden{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:250px;
+    background:linear-gradient(to top,#ba68c8,#ce93d8);
+}
+
+/* Bunga animasi */
+.flower{
+    position:absolute;
+    bottom:200px;
+    font-size:40px;
+    animation: bloom 4s infinite alternate ease-in-out;
+}
+
+/* Kupu-kupu */
+.butterfly{
+    position:absolute;
+    font-size:25px;
+    animation: fly 20s linear infinite;
+}
+
+/* Kelopak jatuh */
+.petal{
+    position:absolute;
+    font-size:18px;
+    animation: fall 8s linear infinite;
+    opacity:0.8;
+}
+
+/* Tombol */
+button{
+    padding:12px 30px;
+    background:#8e24aa;
+    border:none;
+    border-radius:30px;
+    color:white;
+    font-size:1em;
+    cursor:pointer;
+    transition:0.3s;
+
+}
+button:hover{
+    background:#6a1b9a;
+    transform:scale(1.1);
+}
+
+/* Animasi */
+@keyframes bloom{
+    from{ transform:scale(1);}
+    to{ transform:scale(1.2);}
+}
+@keyframes fly{
+    0%{ left:-50px; top:100px;}
+    50%{ top:150px;}
+    100%{ left:110%; top:120px;}
+}
+@keyframes fall{
+    0%{ transform:translateY(-50px) rotate(0deg);}
+    100%{ transform:translateY(700px) rotate(360deg);}
+}
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌸 Selamat Ulang Tahun 🌸<br>Sumayah & Trifani 💜</h1>
+
+<div id="message">
+Hari ini taman bunga ikut bermekaran indah 🌷  
+Semoga hari spesial ini membawa kebahagiaan,  
+senyum yang tak pernah pudar,  
+dan cinta yang selalu bertumbuh.
+</div>
+
+<button onclick="nextMessage()">Buka Doa & Kata Mutiara ✨</button>
+
+<div class="garden"></div>
+
+<div class="flower" style="left:20%;">🌸</div>
+<div class="flower" style="left:40%; animation-delay:1s;">🌺</div>
+<div class="flower" style="left:60%; animation-delay:2s;">🌷</div>
+<div class="flower" style="left:80%; animation-delay:3s;">🌼</div>
+
+<div class="butterfly">🦋</div>
+
+<audio id="bgMusic" autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const messages = [
+`💜 Doa Terindah 💜
+Semoga Allah SWT melimpahkan umur yang penuh berkah,
+kesehatan yang selalu terjaga,
+rezeki yang luas,
+dan kebahagiaan yang terus bermekaran seperti taman bunga.`,
+
+`🌷 Kata Mutiara 🌷
+Hidup itu seperti bunga,
+akan indah saat dirawat dengan sabar,
+akan harum saat disyukuri,
+dan akan bermakna saat dibagikan.`,
+
+`✨ Harapan Spesial ✨
+Semoga setiap impian Sumayah & Trifani
+satu per satu menjadi nyata,
+langkah kalian selalu dipenuhi cahaya,
+dan hari-hari dipenuhi cinta serta tawa.
+
+Barakallah Fii Umrik 💜🌸`
+];
+
+let index = 0;
+
+function nextMessage(){
+    const msg = document.getElementById("message");
+    msg.style.opacity=0;
+    setTimeout(()=>{
+        msg.innerHTML = messages[index];
+        msg.style.opacity=1;
+        createPetal();
+        index = (index+1)%messages.length;
+    },500);
+}
+
+function createPetal(){
+    for(let i=0;i<20;i++){
+        const petal=document.createElement("div");
+        petal.classList.add("petal");
+        petal.innerHTML="🌸";
+        petal.style.left=Math.random()*window.innerWidth+"px";
+        petal.style.animationDuration=(Math.random()*3+5)+"s";
+        document.body.appendChild(petal);
+        setTimeout(()=>{petal.remove();},8000);
+    }
+}
+</script>
+
+</body>
+</html>
